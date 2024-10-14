@@ -14,7 +14,7 @@ on:
 
 jobs:
   build_wheels:
-    name: ${{ matrix.wheel_mode }} wheels ${{ matrix.python }} on ${{ matrix.os }} ${{ matrix.os == 'ubuntu-22.04' && matrix.linux_archs || '' }}
+    name: ${{ matrix.wheel_mode }} wheels ${{ matrix.python }} on ${{ matrix.os }} ${{ matrix.os == 'ubuntu-22.04-ppc64le' && matrix.linux_archs || '' }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -29,7 +29,7 @@ jobs:
           - "windows-2022"
           # TODO: macos-14 uses arm macs (only python 3.10+) - make arm wheel on it
           - "macos-13"
-          - "ubuntu-22.04"
+          - "ubuntu-22.04-ppc64le"
         linux_archs:
           # this is only meaningful on linux. windows and macos ignore exclude all but one arch
           - "aarch64"
@@ -37,7 +37,7 @@ jobs:
 
         include:
           # create pure python build
-          - os: ubuntu-22.04
+          - os: ubuntu-22.04-ppc64le
             wheel_mode: pure-python
             python: "cp-311*"
 
