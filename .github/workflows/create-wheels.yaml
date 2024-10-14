@@ -1,6 +1,7 @@
 name: Create wheel
 
 on:
+  workflow_dispatch:
   # run when a release has been created
   release:
     types: [created]
